@@ -1,9 +1,5 @@
-import dotenv from 'dotenv';
-
-dotenv.config();
-
-// ADDED DEBUG LINE 1: Log the raw environment variable value
-console.log(`[DEBUG] Raw process.env.MONGO_URL: "${process.env.MONGO_URL}"`);
+// Removed: import dotenv from 'dotenv';
+// Removed: dotenv.config();
 
 const Config = {
   prefix: process.env.BOT_PREFIX || "/",
@@ -14,18 +10,17 @@ const Config = {
   mongoUrl: process.env.MONGO_URL || "",
 };
 
-// ADDED DEBUG LINE 2: Log the value after assigning it to Config
-console.log(`[DEBUG] Config.mongoUrl after assignment: "${Config.mongoUrl}"`);
+// Removed DEBUG console.log lines
 
-// Original checks (keep these)
+// Original checks
 if (!Config.mongoUrl) {
-    console.error("FATAL ERROR: Config.mongoUrl is empty or undefined after reading environment variables.");
-    // No need to exit here, let the startDatabase function handle it
+    // The error log inside startDatabase in base/client.ts is better now
+    // console.error("FATAL ERROR: Config.mongoUrl is empty or undefined!");
 }
-if (!Config.devs || Config.devs.length === 0) {
+ if (!Config.devs || Config.devs.length === 0) {
     console.warn("WARNING: DEVS environment variable is not set or empty.");
 }
-if (!Config.support || !Config.test) {
+ if (!Config.support || !Config.test) {
     console.warn("WARNING: SUPPORT_GROUP or TEST_GROUP environment variable is not set.");
 }
 
