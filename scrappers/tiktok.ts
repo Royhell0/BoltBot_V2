@@ -22,7 +22,9 @@ export const getTiktok = async (url: string) => {
   );
   console.log(info);
   url = info.data.shorten_url;
-  return url;
+  // return url; // <--- THIS LINE IS NOW COMMENTED OUT
+
+  // The rest of the function will now execute:
   let { data, headers: resHeaders } = await axios.post(
     "https://musicaldown.com/",
     {
